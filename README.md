@@ -17,9 +17,11 @@
 
 <div align="center">
  
-🌱 I’m currently learning **Micro-Services, Unit testing, Architecture clean**
+☁️ I’m currently building **Cloud-based Microservices** on **AWS**
 
-🌲 I’m currently reinforcing my knowledge in **TypeScript, Next.Js, AWS**
+🌱 I’m currently learning **Unit testing, Clean Architecture**
+
+🌲 I’m currently reinforcing my knowledge in **TypeScript, Next.Js**
 
 </div>
  
@@ -44,7 +46,7 @@
 ![](https://skillicons.dev/icons?i=nodejs,php,python,java,mongodb,mysql)
 
 ### DevOps / Tools
-![](https://skillicons.dev/icons?i=docker,linux,git,github,vscode,npm,postman,figma)
+![](https://skillicons.dev/icons?i=aws,docker,linux,git,github,vscode,npm,postman,figma)
 
 ### Miscellaneous
 ![](https://skillicons.dev/icons?i=arduino,electron,r,pug)
@@ -52,16 +54,6 @@
 </div>
 
 <br/>
-<hr/>
-
-<div align="center">
-  <h2>🐉 My Contributions 🐉</h2>
-  <br>
-  <img alt="snake eating my contributions" src="https://raw.githubusercontent.com/TruxRoyal/TruxRoyal/output/github-snake-dark.svg#gh-dark-mode-only" />
-  
-  <br/><br/><br/>
-</div>
-
 <hr/>
 
 <h2 align="center">🕹️ Arcade Contributions 🕹️</h2>
