@@ -64,6 +64,64 @@
 
 <hr/>
 
+<h2 align="center">🕹️ Arcade Contributions 🕹️</h2>
+<br>
+
+<h3 align="center">Personal — Puzzle Bobble</h3>
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TruxRoyal/TruxRoyal/output/puzzle-bobble-contribution-graph-dark.svg" />
+    <img src="https://raw.githubusercontent.com/TruxRoyal/TruxRoyal/output/puzzle-bobble-contribution-graph.svg" alt="TruxRoyal puzzle bobble contribution graph" />
+  </picture>
+</div>
+
+<br>
+
+<h3 align="center">Work — Pac-Man</h3>
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TruxRoyal/TruxRoyal/output/pacman-contribution-graph-dark.svg" />
+    <img src="https://raw.githubusercontent.com/TruxRoyal/TruxRoyal/output/pacman-contribution-graph.svg" alt="dguzm12 pacman contribution graph" />
+  </picture>
+</div>
+
+<hr/>
+
+<h2 align="center">📊 Contributions by profile 📊</h2>
+<br>
+
+<h3 align="center">Personal</h3>
+<div align=center>
+    <div>
+        <img width=390 src="https://github-readme-streak-stats-salesp07.vercel.app/?user=TruxRoyal&count_private=true&theme=react&border_radius=10" alt="TruxRoyal streak stats"/>
+    </div>
+    <br>
+    <div>
+        <img width=390 src="https://github-readme-stats-salesp07.vercel.app/api?username=TruxRoyal&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10" alt="TruxRoyal stats" />
+    </div>
+</div>
+
+<br>
+
+<h3 align="center">Work</h3>
+<div align=center>
+    <div>
+        <img width=390 src="https://github-readme-streak-stats-salesp07.vercel.app/?user=dguzm12&count_private=true&theme=dracula&border_radius=10" alt="dguzm12 streak stats"/>
+    </div>
+    <br>
+    <div>
+        <img width=390 src="https://github-readme-stats-salesp07.vercel.app/api?username=dguzm12&count_private=true&show_icons=true&theme=dracula&rank_icon=github&border_radius=10" alt="dguzm12 stats" />
+    </div>
+</div>
+
+<p align="center">
+  <sub>
+    Contributions from private repositories may appear publicly only if the account has enabled the option to display private contributions on the profile and the organization does not restrict it. In most cases, GitHub shows aggregated contribution counts rather than exposing the private repository names or code.
+  </sub>
+</p>
+
+<hr/>
+
 <h2 align="center">⚡ Stats ⚡</h2>
 <br>
 <div align=center>
