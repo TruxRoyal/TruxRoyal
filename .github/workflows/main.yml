@@ -39,6 +39,9 @@ jobs:
         env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Fix dist folder ownership
+        run: sudo chown -R $USER:$USER dist
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
