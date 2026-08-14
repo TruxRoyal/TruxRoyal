@@ -45,7 +45,7 @@ jobs:
           node-version: 20
 
       - name: Install pacman-contribution-graph
-        run: npm install --no-save pacman-contribution-graph@5.3.2
+        run: npm install --no-save pacman-contribution-graph@5.3.1
 
       - name: Generate arcade contribution SVGs in './dist/'
         run: node scripts/generate-arcade.mjs
