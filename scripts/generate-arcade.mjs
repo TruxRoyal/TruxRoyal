@@ -5,13 +5,14 @@ import { ArcadeRenderer } from 'pacman-contribution-graph';
 import { mkdirSync, writeFileSync } from 'fs';
 
 const githubToken = process.env.GITHUB_TOKEN;
+const GAME_TIMEOUT_MS = 90_000;
 
 const targets = [
-	{ username: 'TruxRoyal', game: 'puzzle-bobble' },
-	{ username: 'dguzm12', game: 'pacman' }
+	{ username: 'TruxRoyal', game: 'puzzle-bobble', playerStyle: 'opportunistic' },
+	{ username: 'dguzm12', game: 'pacman', playerStyle: 'aggressive' }
 ];
 
-const generate = (game, username, theme) =>
+const generate = (game, username, theme, playerStyle) =>
 	new Promise((resolve, reject) => {
 		let svg = '';
 		const renderer = new ArcadeRenderer({
@@ -19,7 +20,7 @@ const generate = (game, username, theme) =>
 			platform: 'github',
 			username,
 			gameTheme: theme,
-			playerStyle: 'opportunistic',
+			playerStyle,
 			showMonthLabels: true,
 			githubSettings: { accessToken: githubToken },
 			svgCallback: (s) => {
@@ -32,14 +33,35 @@ const generate = (game, username, theme) =>
 		renderer.start().catch(reject);
 	});
 
+// Some game simulations (e.g. pacman AI on sparse grids) can stall without
+// ever reaching gameOverCallback, so cap how long we wait per SVG.
+const withTimeout = (promise, ms) =>
+	new Promise((resolve, reject) => {
+		const timer = setTimeout(() => reject(new Error(`timed out after ${ms}ms`)), ms);
+		promise.then(
+			(v) => {
+				clearTimeout(timer);
+				resolve(v);
+			},
+			(e) => {
+				clearTimeout(timer);
+				reject(e);
+			}
+		);
+	});
+
 mkdirSync('dist', { recursive: true });
 
-for (const { username, game } of targets) {
-	const light = await generate(game, username, 'github');
-	writeFileSync(`dist/${game}-contribution-graph.svg`, light);
+for (const { username, game, playerStyle } of targets) {
+	try {
+		const light = await withTimeout(generate(game, username, 'github', playerStyle), GAME_TIMEOUT_MS);
+		writeFileSync(`dist/${game}-contribution-graph.svg`, light);
 
-	const dark = await generate(game, username, 'github-dark');
-	writeFileSync(`dist/${game}-contribution-graph-dark.svg`, dark);
+		const dark = await withTimeout(generate(game, username, 'github-dark', playerStyle), GAME_TIMEOUT_MS);
+		writeFileSync(`dist/${game}-contribution-graph-dark.svg`, dark);
 
-	console.log(`Generated ${game} graph for ${username}`);
+		console.log(`Generated ${game} graph for ${username}`);
+	} catch (err) {
+		console.warn(`Skipping ${game} graph for ${username}: ${err.message}`);
+	}
 }
