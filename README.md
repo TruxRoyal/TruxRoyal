@@ -106,12 +106,6 @@
     </div>
 </div>
 
-<p align="center">
-  <sub>
-    Contributions from private repositories may appear publicly only if the account has enabled the option to display private contributions on the profile and the organization does not restrict it. In most cases, GitHub shows aggregated contribution counts rather than exposing the private repository names or code.
-  </sub>
-</p>
-
 <hr/>
 
 <h2 align="center">⚡ Stats ⚡</h2>
