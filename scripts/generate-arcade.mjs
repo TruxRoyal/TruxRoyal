@@ -7,6 +7,24 @@ import { mkdirSync, writeFileSync } from 'fs';
 const githubToken = process.env.GITHUB_TOKEN;
 const GAME_TIMEOUT_MS = 90_000;
 
+// Temporary diagnostics: log every HTTP request the library makes so we can
+// tell whether a stall happens during the GitHub API fetch or the in-memory
+// game simulation. Remove once the pacman/dguzm12 hang is understood.
+const nativeFetch = globalThis.fetch;
+globalThis.fetch = async (url, opts) => {
+	const label = typeof url === 'string' ? url : url?.url;
+	const start = Date.now();
+	console.log(`[fetch] -> ${label}`);
+	try {
+		const res = await nativeFetch(url, opts);
+		console.log(`[fetch] <- ${label} status=${res.status} (${Date.now() - start}ms)`);
+		return res;
+	} catch (err) {
+		console.log(`[fetch] xx ${label} error=${err.message} (${Date.now() - start}ms)`);
+		throw err;
+	}
+};
+
 const targets = [
 	{ username: 'TruxRoyal', game: 'puzzle-bobble', playerStyle: 'opportunistic' },
 	{ username: 'dguzm12', game: 'pacman', playerStyle: 'aggressive' }
