@@ -6,6 +6,7 @@ import { mkdirSync, writeFileSync } from 'fs';
 
 const githubToken = process.env.GITHUB_TOKEN;
 const GAME_TIMEOUT_MS = 90_000;
+const MAX_ATTEMPTS = 3;
 
 const targets = [
 	{ username: 'TruxRoyal', game: 'puzzle-bobble', playerStyle: 'opportunistic' },
@@ -50,14 +51,25 @@ const withTimeout = (promise, ms) =>
 		);
 	});
 
+const generateWithRetries = async (game, username, theme, playerStyle) => {
+	for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+		try {
+			return await withTimeout(generate(game, username, theme, playerStyle), GAME_TIMEOUT_MS);
+		} catch (err) {
+			console.warn(`${game}/${username}/${theme} attempt ${attempt}/${MAX_ATTEMPTS} failed: ${err.message}`);
+			if (attempt === MAX_ATTEMPTS) throw err;
+		}
+	}
+};
+
 mkdirSync('dist', { recursive: true });
 
 for (const { username, game, playerStyle } of targets) {
 	try {
-		const light = await withTimeout(generate(game, username, 'github', playerStyle), GAME_TIMEOUT_MS);
+		const light = await generateWithRetries(game, username, 'github', playerStyle);
 		writeFileSync(`dist/${game}-contribution-graph.svg`, light);
 
-		const dark = await withTimeout(generate(game, username, 'github-dark', playerStyle), GAME_TIMEOUT_MS);
+		const dark = await generateWithRetries(game, username, 'github-dark', playerStyle);
 		writeFileSync(`dist/${game}-contribution-graph-dark.svg`, dark);
 
 		console.log(`Generated ${game} graph for ${username}`);

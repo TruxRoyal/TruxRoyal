@@ -4,8 +4,8 @@ name: Generate Contribution Graphs
 # Controls when the action will run.
 on:
   schedule:
-      # every 12 hours
-    - cron: "0 */12 * * *"
+      # every 12 hours, offset from :00 to avoid the top-of-hour runner congestion
+    - cron: "17 */12 * * *"
 
   # This command allows us to run the Action automatically from the Actions tab.
   workflow_dispatch:
